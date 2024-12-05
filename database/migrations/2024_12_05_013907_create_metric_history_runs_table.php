@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('strategy_id')->constrained('strategies')->onDelete('cascade');
             $table->text('url');
-            $table->boolean('accesibility_metric');
-            $table->boolean('pwa_metric');
-            $table->boolean('performance_metric');
-            $table->boolean('seo_metric');
-            $table->boolean('best_practices_metric');
+            $table->decimal('accesibility_metric', 3, 2);
+            $table->decimal('pwa_metric', 3, 2);
+            $table->decimal('performance_metric', 3, 2);
+            $table->decimal('seo_metric', 3, 2);
+            $table->decimal('best_practices_metric', 3, 2);
             $table->timestamps();
         });
     }

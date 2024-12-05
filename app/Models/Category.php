@@ -14,8 +14,4 @@ class Category extends Model
         'status'
     ];
 
-    public function metrics()
-    {
-        return $this->belongsToMany(MetricHistoryRun::class);
-    }
 }
