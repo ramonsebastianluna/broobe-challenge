@@ -24,9 +24,4 @@ class MetricHistoryRun extends Model
         return $this->belongsTo(Strategy::class);
     }
 
-    public function categories()
-    {
-        return $this->belongsToMany(Category::class);
-    }
-
 }
