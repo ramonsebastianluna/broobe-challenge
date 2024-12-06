@@ -1,10 +1,15 @@
 import './bootstrap';
 
 const runMetricForm = document.querySelector('#run-metric-form');
+const saveMetricForm = document.querySelector('#save-metric-form');
 const metricsContainer = document.querySelector('#metrics');
+const btnSubmitMetrics = document.querySelector('#submit-metrics');
 
 runMetricForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    btnSubmitMetrics.innerHTML = '<span class="spinner-border spinner-border-sm" aria-hidden="true"></span>'
+    btnSubmitMetrics.disabled = true;
+    
     const formData = new FormData(runMetricForm);
 
     const selectedCategories = [];
@@ -37,7 +42,12 @@ runMetricForm.addEventListener('submit', async (event) => {
 
         let htmlContent = '';
         serverResponse.forEach(item => {
-            htmlContent += `<p>${item.title}: ${item.score}</p>`;
+            htmlContent += `<div class="card my-2">
+                                <div class="card-body">
+                                    <p class="card-text m-0">${item.title}</p>
+                                    <p class="card-text m-0">${item.score}</p>
+                                </div>
+                            </div>`;
         });
 
         metricsContainer.innerHTML = htmlContent;
@@ -45,4 +55,12 @@ runMetricForm.addEventListener('submit', async (event) => {
     } catch (error) {
         console.error('Error:', error);
     }
+
+    btnSubmitMetrics.innerText = 'GET METRICS'
+    btnSubmitMetrics.disabled = false;
+});
+
+saveMetricForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    alert('Oh! This button is not implemented yet!');
 });

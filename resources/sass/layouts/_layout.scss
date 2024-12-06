@@ -1,0 +1,22 @@
+.container {
+    font-family: 'Montserrat';
+    min-height: 100dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main {
+        width: 90%;
+        min-height: 450px;
+        text-align: center;
+        background-color: #29618c;
+        color: $text-color;
+        @include sm-viewport() {
+            width: 70%;
+        }
+        .menu {
+            .menu__item {
+                color: $text-color;
+            }
+        }
+    }
+}
