@@ -21,21 +21,12 @@ class PageSpeedInsightService
 
     public function fetchPageSpeedData(string $url, string $strategy, array $categories = [])
     {
-        $defaultCategories = ['ACCESSIBILITY', 'BEST_PRACTICES', 'PERFORMANCE', 'PWA', 'SEO'];
-
-        // filtra si se pasan categorias incorrectas.
-        $filteredCategories = array_intersect($defaultCategories, $categories);
-
         try {
-            $response = $this->client->request('GET', $this->endpoint, [
-                'query' => [
-                    'url' => $url,
-                    'key' => config('services.google.api_key'),
-                    'category' => $filteredCategories,
-                    'strategy' => $strategy,
-                ],
-            ]);
-
+            $categoriesQuery = implode('&category=', $categories); // Convierte el array en parámetros repetidos
+            $queryString = "url={$url}&key=" . config('services.google.api_key') . "&category={$categoriesQuery}&strategy={$strategy}";
+            
+            $response = $this->client->request('GET', $this->endpoint . '?' . $queryString);
+            
             return json_decode($response->getBody()->getContents(), true);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
