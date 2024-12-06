@@ -3,6 +3,5 @@
 @section('title', 'Metric History')
 
 @section('content')
-    <h1>Metric History</h1>
-    
+    <p>Opps! Store Metric in development status</p>    
 @endsection
